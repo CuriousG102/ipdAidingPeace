@@ -50,9 +50,9 @@ class Parser:
 
         for i in range(1, len(table)):
             row = table[i]
-            title, sDescrip, lDescrip = row[titleCol], row[sDescripCol], row[lDescripCol]
-            if not [title, sDescrip, lDescrip] in uniqueVals:
-                uniqueVals.append([title, sDescrip, lDescrip])
+            title, sDescrip = row[titleCol], row[sDescripCol]
+            if not [title, sDescrip, ''] in uniqueVals:
+                uniqueVals.append([title, sDescrip, ''])
 
         for line in uniqueVals:
             line.extend(['']*3)
@@ -93,10 +93,10 @@ class Parser:
             for j in range(1, len(rawTable)):
                 rawRow = rawTable[j]
 
-                if uniqueRow[0] == rawRow[titleCol] and uniqueRow[1] == rawRow[sDescripCol] and uniqueRow[2] == rawRow[lDescripCol]: # rows match
+                if uniqueRow[0] == rawRow[titleCol] and uniqueRow[1] == rawRow[sDescripCol]: # rows match
                     rawTable[j].extend(uniqueRow[3:])
         
-        # rawTable now has lat and long from unique row
+        # rawTable now has lat and long and precis code from unique row
 
         f1.close()
 
